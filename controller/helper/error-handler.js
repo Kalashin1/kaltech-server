@@ -1,5 +1,6 @@
 module.exports.errorHandler = function (err) {
-  const errors = {email: '', password: '', name: ''}
+  let errors = {}
+  // = {email: '', password: '', name: ''}
 
   if(err.message.includes('incorrect email')){
     errors.email = 'no user exists with that email'
@@ -21,12 +22,12 @@ module.exports.errorHandler = function (err) {
     })
   }
 
-  // if(err.message.includes('store validation failed'))
-  // {
-  //   Object.values(err.errors).forEach(({properties}) => {
-  //     errors[properties.path] = properties.message
-  //   } )
-  // }
+  if(err.message.includes('post validation failed'))
+  {
+    Object.values(err.errors).forEach(({properties}) => {
+      errors[properties.path] = properties.message
+    } )
+  }
 
   // if(err.message.includes('product validation failed'))
   // {

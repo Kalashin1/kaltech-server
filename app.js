@@ -26,13 +26,20 @@ const settings = {
   saveUninitialized: true,
   unset: 'destroy',
   store: store,
-  name: 'no name for now'
+  name: 'user'
+}
+
+//cors option
+const corsOption = {
+  origin: 'http://localhost:8080',
+  credentials: true,
+  exposedHeaders: ['set-cookie']
 }
 
 const app = express()
 
 // middle ware
-app.use(cors())
+app.use(cors(corsOption))
 app.use(express.json())
 app.use(session(settings))
 app.use(router)

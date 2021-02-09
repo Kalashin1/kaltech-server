@@ -27,7 +27,7 @@ module.exports.loginUser = async function(req, res) {
   catch(err){
     const errors = errorHandler(err)
     console.log(err)
-    res.status(400).json(errors)
+    res.json(errors).status(400)
   }
 }
 
