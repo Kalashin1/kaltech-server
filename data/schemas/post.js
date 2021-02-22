@@ -8,8 +8,13 @@ const postSchema = new Schema({
     minlength: [10, 'title cannot be less than 10 characters']
   },
   body: {
-    type: String,
-    required: [true, 'please enter the contents of your post']
+    text: {
+      type: String,
+      required: [true, 'please enter the contents of your post']
+    },
+    code: {
+      type: String
+    }
   },
   createdAt: {
     type: Date,
@@ -20,14 +25,22 @@ const postSchema = new Schema({
       type: String,
       required: [true, 'please enter the name of the author']
     },
-    id: {
-      type: ObjectId,
-      required: [true, 'please provide the id of the author']
-    },
     email: {
       type: String,
       required: [true, 'please provide the email of the author']
     }
+  },
+  tags: [],
+  language: {
+    type: String,
+    required: [true, 'please pick a language that your post is about']
+  },
+  scope: {
+    type: String,
+    required: [true, 'please provide a scope for your topic']
+  },
+  updatedAt: {
+    type: Date
   }
 })
 

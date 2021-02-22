@@ -3,14 +3,15 @@ const { errorHandler } = require('./helper/error-handler')
 
 // create a post
 module.exports.createPost = async (req, res) => {
-  const { author, title, body, } = req.body
-  console.log(author, title, body)
+  const { author, title, body, scope, language} = req.body
+  console.log(author, title, body, scope, language)
   try {
-    const Post = await post.create({author, title, body})
+    const Post = await post.create({author, title, body, scope, language})
     res.json(Post)
   } catch (err) {
     const error = errorHandler(err)
-    res.json(error)
+    console.log(err)
+    res.json(err.message)
   }
 }
 

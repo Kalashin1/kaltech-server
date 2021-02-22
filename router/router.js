@@ -16,11 +16,11 @@ router.post('/login', loginUser)
 // post routes
 
 // create a post
-router.post('/post', isUserAuthenticated, createPost)
+router.post('/post', createPost)
 // fetch all post
-router.get('/posts',  isUserAuthenticated, fetchAllPosts)
+router.get('/posts', fetchAllPosts)
 // fetch  a particular post 
-router.get('/post/:id',  isUserAuthenticated, fetchPost)
+router.get('/post/:id', fetchPost)
 // get the author of a post
 router.get('/post/author/:id', fetchAuthorOfPost)
 // remove a particular post

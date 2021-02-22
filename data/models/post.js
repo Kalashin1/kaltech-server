@@ -1,6 +1,5 @@
 const { postSchema } = require('../schemas/post')
 const { model } = require('mongoose')
-const mongoose = require('mongoose')
 
 // static methods
 // get all posts
@@ -9,17 +8,28 @@ postSchema.statics.getAllPosts = async function () {
   return posts
 }
 
+// get post by tag
+postSchema.statics.getPostsByTag = async function(tag) {
+  const posts = await this.find()
+  posts.forEach(post => {
+    if (post.tags.includes(tag)) {
+      return post
+    }
+  })
+}
+
 //get all post that belong to a particular author
 postSchema.statics.getPostByAuthor = async function(author) {
   const posts = await this.find().where({author})
   return posts
 }
 
-// fetch author of post
-postSchema.statics.getAuthorOfPost = async function (_id) {
-	const user = await mongoose.model('user').findById({_id})
-	return user
+// get all post that is of same language
+postSchema.statics.findByLanguage = async function(language) {
+	const posts = await this.find().where({language})
+	return posts
 }
+
 
 // delete a post
 postSchema.statics.removePost = async function (_id) {
@@ -34,9 +44,11 @@ postSchema.statics.editPost = async function(_id, newPost) {
 }
 
 // Query Helpers
-postSchema.statics.getPostWithId = function (_id) {
+postSchema.statics.getPostWithId = async function (_id) {
   return this.findById(_id)
 }
+
+
 const post = model('post', postSchema);
 
 module.exports.post = post
