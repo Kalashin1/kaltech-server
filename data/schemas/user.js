@@ -22,8 +22,7 @@ const userSchema = new Schema({
   isAdmin: {
     type: Boolean,
     default: false
-  },
-  posts: []
+  }
 })
 
 module.exports = userSchema

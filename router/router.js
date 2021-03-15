@@ -1,7 +1,7 @@
 const { Router } = require('express')
 const { signupUser, loginUser, logoutUser } = require('../controller/auth')
 const { getUser } = require('../controller/helper/middleware')
-const { createPost, fetchAllPosts, fetchPost, fetchAuthorOfPost, removePost, updatePost } = require('../controller/post')
+const { createLesson, fetchAllLessons, fetchLessonWithId, fetchLessonWithLanguage, fetchLessonWithTopicAndLanguage, deleteLessonithLanguageAndTopic, updatePost, removePost } = require('../controller/lesson')
 const { isUserAuthenticated } = require('../controller/helper/middleware')
 
 
@@ -16,16 +16,21 @@ router.post('/login', loginUser)
 // post routes
 
 // create a post
-router.post('/post', createPost)
+router.post('/lesson', createLesson)
 // fetch all post
-router.get('/posts', fetchAllPosts)
+router.get('/lessons', fetchAllLessons)
 // fetch  a particular post 
-router.get('/post/:id', fetchPost)
+router.get('/lesson/:id', fetchLessonWithId)
 // get the author of a post
-router.get('/post/author/:id', fetchAuthorOfPost)
-// remove a particular post
-router.delete('/post/:id', removePost)
-// update a post
-router.put('/post/:id', updatePost)
+router.get('/lessons/language/', fetchLessonWithLanguage)
+// get the author of a post
+router.get('/lesson/language/topic', fetchLessonWithTopicAndLanguage)
+// remove a particular lesson
+router.delete('/lesson/:id', removePost)
+// remove a particular lesson
+router.delete('/lesson/language/topic', deleteLessonithLanguageAndTopic)
+// update a lesson
+router.put('/lesson/:id', updatePost)
+
 
 module.exports = router

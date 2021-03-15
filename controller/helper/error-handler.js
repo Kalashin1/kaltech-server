@@ -22,7 +22,7 @@ module.exports.errorHandler = function (err) {
     })
   }
 
-  if(err.message.includes('post validation failed'))
+  if(err.message.includes('lesson validation failed'))
   {
     Object.values(err.errors).forEach(({properties}) => {
       errors[properties.path] = properties.message
